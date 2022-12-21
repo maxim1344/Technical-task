@@ -1,0 +1,72 @@
+﻿<Window x:Class="test.View.EditEmployee"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:test.View"
+        mc:Ignorable="d"
+        Title="Редактировать сотрудника" Height="400" Width="300"
+        Name="EditEmployeeWnd" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" 
+                    Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="200">
+            <TextBlock Text="Фамилия" 
+                       Margin="0,0,0,5" 
+                       FontFamily="Segoe UI Semibold">                
+            </TextBlock>
+            <TextBox  Text="{Binding Surname}" 
+                      Margin="0,0,0,10">                
+            </TextBox>
+            <TextBlock Text="Имя" 
+                       Margin="0,0,0,5" 
+                       FontFamily="Segoe UI Semibold">                
+            </TextBlock>
+            <TextBox Text="{Binding Name}" 
+                     Margin="0,0,0,10">                
+            </TextBox>
+            <TextBlock Text="Отчество"
+                       Margin="0,0,0,5" 
+                       FontFamily="Segoe UI Semibold">                
+            </TextBlock>
+            <TextBox Text="{Binding Patronymic}" 
+                     Margin="0,0,0,10">                
+            </TextBox>
+            <TextBlock Text="Дата рождения" 
+                       Margin="0,0,0,5"
+                       FontFamily="Segoe UI Semibold">                
+            </TextBlock>
+            <DatePicker SelectedDate="{Binding DateOfBirth}" 
+                        Margin="0,0,0,10">                
+            </DatePicker>
+            <TextBlock Text="Пол"
+                       Margin="0,0,0,5" 
+                       FontFamily="Segoe UI Semibold">                
+            </TextBlock>
+            <ComboBox ItemsSource="{Binding GenderList}" 
+                      SelectedItem="{Binding Gender}" 
+                      Margin="0,0,0,10">                
+            </ComboBox>
+            <TextBlock Text="Подразделение" 
+                       Margin="0,0,0,5" 
+                       FontFamily="Segoe UI Semibold">                
+            </TextBlock>
+            <ComboBox ItemsSource="{Binding AllDepartments}"
+                      SelectedItem="{Binding Department}"
+                      DisplayMemberPath="NameOfDepartment" 
+                      Margin="0,0,0,10">                
+            </ComboBox>
+        </StackPanel>
+        <Button Grid.Row="1" Content="Редактировать сотрудника" 
+                Command="{Binding EditEmployee}"
+                CommandParameter="{Binding ElementName = EditEmployeeWnd}" 
+                TextBlock.FontFamily="Segoe UI Semibold">            
+        </Button>
+    </Grid>
+</Window>

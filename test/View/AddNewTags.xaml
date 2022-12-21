@@ -1,0 +1,69 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:test.View"
+        xmlns:ViewModel="clr-namespace:test.ViewModel" x:Class="test.View.AddNewTags"
+        mc:Ignorable="d" 
+        Title="Добавить тег" 
+        Height="325" Width="300"
+        x:Name="AddNewTagWnd" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <ViewModel:DataVM/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" 
+                    Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center" 
+                    Width="200">
+            <TextBlock Text="Название тега" 
+                       FontFamily="Segoe UI Semibold" 
+                       Margin="0,0,0,5">                
+            </TextBlock>
+            <TextBox Name="TagName" 
+                     Text = "{Binding TagName}"
+                     Margin="0,0,0,5">                
+            </TextBox>
+            <Button Command="{Binding AddLbItem}"
+                    CommandParameter="{Binding ElementName=LB}" 
+                    Padding="1,1,1,1" 
+                    Margin="0,5,0,5">
+                <TextBlock TextAlignment="Center" 
+                           Text="Добавить тег в список" 
+                           TextWrapping="Wrap" FontFamily="Segoe UI Semibold">                    
+                </TextBlock>
+            </Button>
+            <TextBlock Text="Список тегов на создание" 
+                       FontFamily="Segoe UI Semibold" 
+                       Margin="0,0,0,5" 
+                       HorizontalAlignment="Center">                
+            </TextBlock>
+            <ListBox x:Name="LB" 
+                     MinHeight="20" 
+                     SelectionMode="Multiple" 
+                     Height="85">                
+            </ListBox>
+            <Button Command="{Binding DeleteLbItem}"
+                        CommandParameter="{Binding ElementName=LB}" 
+                    Margin="0,5,0,0">
+                <TextBlock TextAlignment="Center" 
+                           Text="Удалить тег из списка" 
+                           TextWrapping="Wrap" 
+                           FontFamily="Segoe UI Semibold">                    
+                </TextBlock>
+            </Button>
+        </StackPanel>
+        <Button Grid.Row="1" 
+                Content="Создать тег(и)" 
+                Command="{Binding AddNewTag}"
+                CommandParameter="{Binding ElementName=AddNewTagWnd}"
+                TextBlock.FontFamily="Segoe UI Semibold">            
+        </Button>
+    </Grid>
+</Window>
